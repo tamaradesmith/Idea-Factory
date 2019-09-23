@@ -1,6 +1,9 @@
 class IdeasController < ApplicationController
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
     before_action :find_idea, only: [:show, :edit, :update, :destroy]
 
+    before_action :authorize!, only: [:edit, :update, :destroy]
 
     def new
         @idea = Idea.new
@@ -8,6 +11,7 @@ class IdeasController < ApplicationController
 
     def create
         @idea = Idea.new idea_params
+        @idea.user= current_user
 
       if  @idea.save
 
@@ -44,10 +48,10 @@ class IdeasController < ApplicationController
         end
     end
 
-        def destroy
-            @idea.destroy
-            redirect_to ideas_path
-        end
+    def destroy
+        @idea.destroy
+        redirect_to ideas_path
+    end
 
     private
 
@@ -59,4 +63,7 @@ class IdeasController < ApplicationController
         @idea = Idea.find(params[:id])
     end
 
+    def authorize!
+        redirect_to idea_path(@idea), aleert: "No autherization" unless can?(:crud, @idea)
+    end
 end

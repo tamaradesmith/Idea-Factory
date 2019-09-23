@@ -5,8 +5,14 @@ class Ability
 
   def initialize(user)
     
+    user ||= User.new
 
 
+    alias_action :create, :read, :update, :destroy, to: :crud
+
+    can :crud, Idea do |idea|
+      idea.user == user
+    end
 
     # Define abilities for the passed in user here. For example:
     #

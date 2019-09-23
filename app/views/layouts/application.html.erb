@@ -13,6 +13,9 @@
   <header>
   <%=  link_to "new", new_idea_path %>
   <%=  link_to "index", ideas_path %>
+  <%=  link_to "sign In ", new_session_path %>
+  <%=  link_to "new user", new_user_path %>
+ <%=  link_to "Sign out", sessions_path, method: :delete, data: {confirm: "Are you sure?"} %>
 <hr />
   </header>
   <article>
