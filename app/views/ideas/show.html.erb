@@ -12,3 +12,18 @@ Idea Page
     <%= link_to "Delete", idea_path(@idea), method: :delete %>
 
 </div>
+<div>
+<%= render "review" %>
+
+</div>
+<div>
+    <% @reviews.each do |review|  %>
+        <div>
+            <%= review.body %>
+            <%= review.user&.full_name %>
+            <%= time_ago_in_words(review.created_at) %>
+            <%= link_to("delete review", idea_review_path(@idea, review), method: :delete) %>
+        </div>
+    <% end %>
+
+</div>

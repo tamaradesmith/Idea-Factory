@@ -14,6 +14,9 @@ class Ability
       idea.user == user
     end
 
+    can :crud, Review do |review|
+      review.user == user
+    end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
