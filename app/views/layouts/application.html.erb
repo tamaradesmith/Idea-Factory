@@ -10,6 +10,14 @@
   </head>
 
   <body>
+  <header>
+  <%=  link_to "new", new_idea_path %>
+  <%=  link_to "index", ideas_path %>
+<hr />
+  </header>
+  <article>
     <%= yield %>
+
+    </article>
   </body>
 </html>

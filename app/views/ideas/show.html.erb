@@ -1,0 +1,14 @@
+<div>
+Idea Page
+</div>
+<div>
+    <h4> <%= @idea.title %> </h4>
+
+    <p>
+        <%= @idea.description %>
+    </p>
+
+    <%= link_to "Edit", edit_idea_path(@idea) %>
+    <%= link_to "Delete", idea_path(@idea), method: :delete %>
+
+</div>
