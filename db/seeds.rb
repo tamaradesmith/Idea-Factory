@@ -8,6 +8,9 @@
 
 Idea.destroy_all
 User.destroy_all
+Review.destroy_all
+Like.destroy_all
+
 
 NUM_IDEAS = 500
 NUM_USERS = 15
@@ -36,6 +39,13 @@ NUM_IDEAS.times do
         updated_at: created_at,
         user: users.sample
     )
+    if i.valid?
+        i.reviews = rand(0..8).times.map do
+            Review.new(body:Faker::GreekPhilosophers.quote, user: users.sample)
+
+        end
+        i.likers = users.shuffle.slice(0, rand(users.count/2))
+    end
 end
 
     ideas = Idea.all

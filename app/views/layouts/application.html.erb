@@ -4,19 +4,29 @@
     <title>IdeaFactory</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
   <header>
-  <%=  link_to "new", new_idea_path %>
-  <%=  link_to "index", ideas_path %>
-  <%=  link_to "sign In ", new_session_path %>
-  <%=  link_to "new user", new_user_path %>
- <%=  link_to "Sign out", sessions_path, method: :delete, data: {confirm: "Are you sure?"} %>
-<hr />
+  <p class="nav-icon" > Idea Factory </p>
+  <%=  link_to "Index Of Ideaes", ideas_path, class:"nav-item" %>
+  <%=  link_to "New Idea", new_idea_path, class:"nav-item" %>
+
+  <% if user_signed_in? %>
+    <p  class="nav-item"  >
+      <%= current_user.first_name%>
+    </p>
+  <%=  link_to "Sign Out", sessions_path, method: :delete, class:"nav-item", data: {confirm: "Are you sure?"} %>
+
+ <% else %>
+  <%=  link_to "Sign In", new_session_path, class:"nav-item" %>
+
+  <% end %>
+  <%=  link_to "New User", new_user_path, class:"nav-item" %>
+
   </header>
   <article>
     <%= yield %>

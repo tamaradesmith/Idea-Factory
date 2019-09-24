@@ -12,6 +12,7 @@ class IdeasController < ApplicationController
     def create
         @idea = Idea.new idea_params
         @idea.user= current_user
+        @like = @idea.likes.find_by(user: current_user)
 
       if  @idea.save
 
@@ -28,12 +29,15 @@ class IdeasController < ApplicationController
     def show
         @review = Review.new
         @reviews = @idea.reviews.order(created_at: :desc)
+        @like = @idea.likes.find_by(user: current_user)
     end
 
     def index
 
         @ideas = Idea.order(created_at: :desc)
         
+   
+
     end
 
     def edit

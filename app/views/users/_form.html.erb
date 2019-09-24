@@ -1,31 +1,32 @@
 
 <%= form_with model: @user, local: true do |f|  %>
-
-    <div>
-        <%= f.label :first_name %>
-        <%= f.text_field :first_name  %>
+    <div class="form">
+    <div class="form-div">
+        <%= f.label :first_name, class:"form-user" %>
+        <%= f.text_field :first_name, class:"user-field"  %>
     </div>
 
-    <div>
-        <%= f.label :last_name %>
-        <%= f.text_field :last_name  %>
+    <div class="form-div">
+        <%= f.label :last_name, class:"form-user"  %>
+        <%= f.text_field :last_name, class:"user-field"  %>
     </div>
 
-    <div>
-        <%= f.label :email %>
-        <%= f.email_field :email %>
+    <div class="form-div">
+        <%= f.label :email, class:"form-user"  %>
+        <%= f.email_field :email, class:"user-field" %>
     </div>
 
-    <div>
-        <%= f.label :password %>
-        <%= f.password_field :password  %>
+    <div  class="form-div">
+        <%= f.label :password, class:"form-user"  %>
+        <%= f.password_field :password, class:"user-field" %>
     </div>
 
-    <div>
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation  %>
+    <div  class="form-div">
+        <%= f.label :password_confirmation, class:"form-user"  %>
+        <%= f.password_field :password_confirmation, class:"user-field" %>
     </div>
 
-    <%= f.submit "Create new user" %>
+    <%= f.submit "Create new user", class:"form-btn" %>
 
+</div>
 <% end %>

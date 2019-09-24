@@ -1,29 +1,65 @@
-<div>
+<div class="page-header">
 Idea Page
 </div>
-<div>
-    <h4> <%= @idea.title %> </h4>
+<div class="idea-page">
+    <div class="idea-card">
+        <h4 class="idea-header"> <%= @idea.title %> </h4>
+        
+        <p class="idea-body">
+            <%= @idea.description %>
+        </p>
+        <div class="idea-footer">
+            <div class="idea-name">
+            <%= @idea.user&.full_name %>
+            </div>
+            <p class="idea-like">
+            <%= pluralize(@idea.likes.count, "like")%>
+            </p>
+        <% if @like.present? && can?(:destroy, @like) %>
 
-    <p>
-        <%= @idea.description %>
-    </p>
+            <%= link_to "Liked", like_path(@like), method: :delete, class:"idea-like idea-like-btn" %> 
 
-    <%= link_to "Edit", edit_idea_path(@idea) %>
-    <%= link_to "Delete", idea_path(@idea), method: :delete %>
+            <% elsif can?(:like, @idea) %>
 
+             <%= link_to "Like", idea_likes_path(@idea), method: :post, class:"idea-like idea-like-btn" %>
+
+            <% end %>
+        </div>
+
+        <% if can? :crud, @idea%>
+        <div>
+        <%= link_to "Edit", edit_idea_path(@idea), class:"btn" %>
+        <%= link_to "Delete", idea_path(@idea), method: :delete, class:"btn" %>
+    </div>
+<% end %>
 </div>
-<div>
+
+
+<div class="idea-card">
+
+
 <%= render "review" %>
 
-</div>
-<div>
+
+
     <% @reviews.each do |review|  %>
-        <div>
+        <div class='review-card'>
+
             <%= review.body %>
-            <%= review.user&.full_name %>
-            <%= time_ago_in_words(review.created_at) %>
-            <%= link_to("delete review", idea_review_path(@idea, review), method: :delete) %>
+
+            <div class='review-footing'>
+            <p>
+                <%= review.user&.full_name %>
+             </p>
+             <p>  
+                <%= time_ago_in_words(review.created_at) %>
+                </p>
+                <% if can?(:crud, review) %>
+                    <%= link_to("delete review", idea_review_path(@idea, review), class:"idea-like idea-like-btn", method: :delete) %>
+                <% end %>
+            </div>
         </div>
     <% end %>
+</div>
 
 </div>

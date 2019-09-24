@@ -1,11 +1,21 @@
-<div> Index Page </div>
+<div class="page-header"> Index Page </div>
 
 <% @ideas.each do |idea| %>
 
-    <div >
-        <h2><%= link_to idea.title, idea_path(idea) %></h2>
+    <div class="index-card" >
+        <div class="index-card-header">
+            <%= link_to idea.title, idea_path(idea), class:"header-text" %>
+        </div>
 
-        <p> <%=  idea.description %></p>
+        <div class="index-card-body">
+            <%=  idea.description %>
+        </div>
+
+        <div class="index-card-footing">    
+           <p> <%= idea.user&.full_name %> </p>
+           <p> <%= pluralize(idea.likes.count, "like")%> 
+
+        </div>
     </div>
 
 <% end %>

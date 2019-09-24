@@ -13,14 +13,16 @@
       <div class= "flex-form review-underline">
 
 <div>
-    <p class="review-label"> Comment </p>
-    <%= f.text_area( :body, cols:50, rows:5, placeholder: "Enter a review here") %>
+
+    <p class="review-form-header"> Review </p>
+
+    <%= f.text_area :body, placeholder: "Enter a review here", class:"review-form-text" %>
       </div>
 
       
       
       <div class="review" >
-        <%= f.submit "Submit Review" %>
+        <%= f.submit "Submit Review", class:"review-btn" %>
       </div>
 </div>
     <% end %>

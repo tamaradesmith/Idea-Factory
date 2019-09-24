@@ -17,6 +17,16 @@ class Ability
     can :crud, Review do |review|
       review.user == user
     end
+
+    can :like, Idea do |idea|
+      user.persisted? && user !=idea.user
+    end
+
+    can :destroy, Like do |like|
+      like.user == user
+
+    end
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
